@@ -14,7 +14,7 @@ LOG=/var/log/raspion.log
 [[ -f .version ]] && source ./.version || VER=$(git rev-parse --short HEAD)
 source ./.defaults
 sudo touch $LOG
-sudo chown $USER:adm $LOG
+sudo chown $LOCALUSER:$LOCALGROUP $LOG
 
 trap 'error_report $LINENO' ERR
 error_report() {
@@ -23,9 +23,12 @@ error_report() {
 
 echo "==> Einrichtung des c't-Raspion ($VER)" | tee -a $LOG
 
+echo "* Raspbian aktualisieren ..." | tee -a $LOG
+sudo apt-get update >> $LOG 2>&1
+sudo apt-get -y dist-upgrade >> $LOG 2>&1
+
 echo "* Hilfspakete hinzufügen, Paketlisten aktualisieren" | tee -a $LOG
-sudo dpkg -i $WD/debs/raspion-keyring_2019_all.deb  >> $LOG 2>&1
-# the former calls apt-get update in postinst
+sudo apt install etckeeper  >> $LOG 2>&1
 
 echo "* Firewallregeln vorbereiten, Module laden" | tee -a $LOG
 sudo iptables -t nat -F POSTROUTING >> $LOG 2>&1
@@ -45,11 +48,18 @@ sudo apt-get install -y iptables-persistent >> $LOG 2>&1
 echo "* Firewall-Regeln speichern ..." | tee -a $LOG
 sudo netfilter-persistent save >> $LOG 2>&1
 
-echo "* Raspbian aktualisieren ..." | tee -a $LOG
-sudo apt-get -y dist-upgrade >> $LOG 2>&1
-
 echo "* Pakete installieren ..." | tee -a $LOG
-sudo apt-get install -y raspion --no-install-recommends >> $LOG 2>&1
+sudo apt-get install -y --no-install-recommends \
+  lighttpd wireshark-gtk shellinabox mitmproxy bridge-utils ipv6calc hostapd nmap \
+  xsltproc tcpreplay pwgen iptables-persistent libgtk-3-bin ntopng radvd >> $LOG 2>&1
+cd /tmp
+wget http://apt-stable.ntop.org/18.04/all/apt-ntop-stable.deb
+sudo apt install ./apt-ntop-stable.deb
+sudo apt-get install -y --no-install-recommends ntopng >> $LOG 2>&1
+
+
+exit 0;
+###
 
 echo "* Softwaregrundkonfiguration ..." | tee -a $LOG
 sudo usermod -a -G wireshark $LOCALGROUP >> $LOG 2>&1
