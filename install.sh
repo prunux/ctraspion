@@ -1,16 +1,18 @@
 #!/bin/bash
 
 #
-# c't-Raspion, a Raspberry Pi based all in one sniffer
+# Router Spion, a Ubuntu 20.04 all in one sniffer based on
+# (c't-Raspion, a Raspberry Pi based all in one sniffer)
 # for judging on IoT and smart home devices activity
-# (c) 2019-2020 c't magazin, Germany, Hannover
-# see: https://ct.de/-123456 for more information
 #
+# (c) 2019-2020 c't magazin, Germany, Hannover
+#
+# (c) 2020 prunux.ch, Plessl + Burkhardt GmbH, Niederrohrdorf, Switzerland
 
 set -e
 
 WD=$(pwd)
-LOG=/var/log/raspion.log
+LOG=/var/log/spion.log
 [[ -f .version ]] && source ./.version || VER=$(git rev-parse --short HEAD)
 source ./.defaults
 sudo touch $LOG
@@ -18,19 +20,19 @@ sudo chown $LOCALUSER:$LOCALGROUP $LOG
 
 trap 'error_report $LINENO' ERR
 error_report() {
-    echo "Installation leider fehlgeschlagen in Zeile $1."
+    echo "Installation unfortunately failed in line $1."
 }
 
-echo "==> Einrichtung des c't-Raspion ($VER)" | tee -a $LOG
+echo "==> Setup of the Router-Spion ($VER)" | tee -a $LOG
 
-echo "* Raspbian aktualisieren ..." | tee -a $LOG
+echo "* Updating Base OS (Ubuntu) ..." | tee -a $LOG
 sudo apt-get update >> $LOG 2>&1
 sudo apt-get -y dist-upgrade >> $LOG 2>&1
 
-echo "* Hilfspakete hinzufügen, Paketlisten aktualisieren" | tee -a $LOG
-sudo apt install etckeeper  >> $LOG 2>&1
+echo "* Add help packages, update package lists" | tee -a $LOG
+sudo apt-get install -y etckeeper  >> $LOG 2>&1
 
-echo "* Firewallregeln vorbereiten, Module laden" | tee -a $LOG
+echo "* Prepare firewall rules, load modules" | tee -a $LOG
 sudo iptables -t nat -F POSTROUTING >> $LOG 2>&1
 sudo ip6tables -t nat -F POSTROUTING >> $LOG 2>&1
 sudo iptables -t nat -F PREROUTING >> $LOG 2>&1
@@ -40,15 +42,15 @@ sudo ip6tables -t nat -A POSTROUTING -o eth0 -s $IPv6NET/64 -j MASQUERADE >> $LO
 sudo iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 81 -i eth0 >> $LOG 2>&1
 sudo ip6tables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 81 -i eth0 >> $LOG 2>&1
 
-echo "* Pakete vorkonfigurieren ..." | tee -a $LOG
+echo "* Preconfigure packages..." | tee -a $LOG
 sudo debconf-set-selections debconf/wireshark >> $LOG 2>&1
 sudo debconf-set-selections debconf/iptables-persistent >> $LOG 2>&1
 sudo apt-get install -y iptables-persistent >> $LOG 2>&1
 
-echo "* Firewall-Regeln speichern ..." | tee -a $LOG
+echo "* Save firewall rules..." | tee -a $LOG
 sudo netfilter-persistent save >> $LOG 2>&1
 
-echo "* Pakete installieren ..." | tee -a $LOG
+echo "* Installing packages ..." | tee -a $LOG
 sudo apt-get install -y --no-install-recommends \
   lighttpd wireshark-gtk shellinabox mitmproxy bridge-utils ipv6calc hostapd nmap \
   xsltproc tcpreplay pwgen iptables-persistent libgtk-3-bin ntopng radvd >> $LOG 2>&1
@@ -57,16 +59,12 @@ wget http://apt-stable.ntop.org/18.04/all/apt-ntop-stable.deb
 sudo apt install ./apt-ntop-stable.deb
 sudo apt-get install -y --no-install-recommends ntopng >> $LOG 2>&1
 
-
-exit 0;
-###
-
-echo "* Softwaregrundkonfiguration ..." | tee -a $LOG
-sudo usermod -a -G wireshark $LOCALGROUP >> $LOG 2>&1
-sudo usermod -a -G www-data $LOCALGROUP >> $LOG 2>&1
-sudo cp $WD/files/ntopng.conf /etc/ntopng >> $LOG 2>&1
-sudo sed -i "s/^-m=#IPv4NET#/-m=$IPv4NET/" /etc/ntopng/ntopng.conf >> $LOG 2>&1
-sudo sed -i "s/^-m=#INTERFACE#/-m=$INTERFACE/" /etc/ntopng/ntopng.conf >> $LOG 2>&1
+echo "* Basic software configuration ..." | tee -a $LOG
+sudo usermod -a -G wireshark $LOCALUSER >> $LOG 2>&1
+sudo usermod -a -G www-data $LOCALUSER >> $LOG 2>&1
+sudo cp $WD/files/ntopng.conf /etc/ntopng.conf >> $LOG 2>&1
+sudo sed -i "s/^-m=#IPv4NET#/-m=$IPv4NET/" /etc/ntopng.conf >> $LOG 2>&1
+sudo sed -i "s/^-i=#INTERFACE#/-i=$INTERFACE/" /etc/ntopng.conf
 #sudo sed -i "s/^  address #IPv4HOST#/  address $IPv4HOST/" /etc/network/interfaces >> $LOG 2>&1
 #sudo sed -i "s/^  address #IPv6HOST#/  address $IPv6HOST/" /etc/network/interfaces >> $LOG 2>&1
 sudo cp $WD/files/ipforward.conf /etc/sysctl.d >> $LOG 2>&1
@@ -84,38 +82,50 @@ sudo cp -f $WD/files/shellinabox /etc/default >> $LOG 2>&1
 cd /usr/lib/python3/dist-packages/mitmproxy/addons/onboardingapp/static >> $LOG 2>&1
 sudo ln -sf /usr/share/fonts-font-awesome fontawesome >> $LOG 2>&1
 
-echo "* systemd-Units vorbereiten ..." | tee -a $LOG
-sudo systemctl enable mitmweb.service >> $LOG 2>&1
+echo "* Prepare systemd units ..." | tee -a $LOG
+sudo cp $WD/files/mitmweb.service /etc/systemd/system >> $LOG 2>&1
+sudo cp $WD/files/broadwayd.service /etc/systemd/system >> $LOG 2>&1
+sudo cp $WD/files/wireshark.service /etc/systemd/system >> $LOG 2>&1
+sudo systemctl enable mitmweb >> $LOG 2>&1
 sudo systemctl unmask hostapd >> $LOG 2>&1
 sudo systemctl enable radvd >> $LOG 2>&1
 sudo systemctl enable broadwayd >> $LOG 2>&1
 sudo systemctl enable wireshark >> $LOG 2>&1
 
-echo "* Weboberfläche hinzufügen ..." | tee -a $LOG
+echo "* Add Web Interface ..." | tee -a $LOG
 cd /etc/lighttpd/conf-enabled >> $LOG 2>&1
 sudo ln -sf ../conf-available/10-userdir.conf 10-userdir.conf >> $LOG 2>&1
 sudo ln -sf ../conf-available/10-proxy.conf 10-proxy.conf >> $LOG 2>&1
 sudo cp $WD/files/10-dir-listing.conf . >> $LOG 2>&1
 sudo -s <<HERE
 echo '\$SERVER["socket"] == ":81" {
-        server.document-root = "/home/localadmin/public_html"
+        server.document-root = "/home/#LOCALUSER#/public_html"
         dir-listing.encoding = "utf-8"
         \$HTTP["url"] =~ "^/caps(\$|/)" {
-            dir-listing.activate = "enable" 
+            dir-listing.activate = "enable"
         }
         \$HTTP["url"] =~ "^/scans(\$|/)" {
-           dir-listing.activate = "enable" 
+           dir-listing.activate = "enable"
         }
         \$HTTP["url"] =~ "^/admin" {
                 proxy.server = ( "" => (( "host" => "'$IPv4HOST'", "port" => "80")) )
         }
 }' > /etc/lighttpd/conf-enabled/20-extport.conf
 HERE
-sudo chmod g+s /home/localadmin/public_html/caps >> $LOG 2>&1
-sudo chmod 777 /home/localadmin/public_html/caps >> $LOG 2>&1
-sudo chgrp www-data /home/localadmin/public_html/caps >> $LOG 2>&1
+sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /etc/lighttpd/conf-enabled/20-extport.conf >> $LOG 2>&1
+sudo mkdir -p /home/$LOCALUSER/public_html/scans >> $LOG 2>&1
+sudo mkdir -p /home/$LOCALUSER/public_html/caps >> $LOG 2>&1
+sudo cp $WD/files/*.png /home/$LOCALUSER/public_html >> $LOG 2>&1
+sudo cp $WD/files/*.php /home/$LOCALUSER/public_html >> $LOG 2>&1
+sudo cp $WD/files/*.css /home/$LOCALUSER/public_html >> $LOG 2>&1
+sudo cp $WD/files/*.js /home/$LOCALUSER/public_html >> $LOG 2>&1
+sudo cp $WD/files/*.ico /home/$LOCALUSER/public_html >> $LOG 2>&1
+sudo chown -Rh $LOCALUSER: /home/$LOCALUSER/public_html
+sudo chmod g+s /home/$LOCALUSER/public_html/caps >> $LOG 2>&1
+sudo chmod 777 /home/$LOCALUSER/public_html/caps >> $LOG 2>&1
+sudo chgrp www-data /home/$LOCALUSER/public_html/caps >> $LOG 2>&1
 
-echo "* Pi-hole installieren ..." | tee -a $LOG
+echo "* Installation of Pi-hole ..." | tee -a $LOG
 if ! id pihole >/dev/null 2>&1; then
     sudo adduser --no-create-home --disabled-login --disabled-password --shell /usr/sbin/nologin --gecos "" pihole >> $LOG 2>&1
 fi
@@ -128,6 +138,7 @@ sudo sed -i "s/DHCP_ROUTER=#IPv4HOST#/DHCP_ROUTER=$IPv4HOST/" /etc/pihole/setupV
 sudo sed -i "s/DHCP_START=#DHCPv4START#/DHCP_START=$DHCPv4START/" /etc/pihole/setupVars.conf >> $LOG 2>&1
 sudo sed -i "s/DHCP_END=#DHCPv4END#/DHCP_END=$DHCPv4END/" /etc/pihole/setupVars.conf >> $LOG 2>&1
 sudo sed -i "s/PIHOLE_INTERFACE=#INTERFACE#/PIHOLE_INTERFACE=$INTERFACE/" /etc/pihole/setupVars.conf >> $LOG 2>&1
+sudo apt-get update >> $LOG 2>&1
 sudo -s <<HERE
 curl -sSL https://install.pi-hole.net | bash /dev/stdin --unattended >> $LOG 2>&1
 HERE
