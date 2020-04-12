@@ -39,8 +39,8 @@ sudo iptables -t nat -F PREROUTING >> $LOG 2>&1
 sudo ip6tables -t nat -F PREROUTING >> $LOG 2>&1
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE >> $LOG 2>&1
 sudo ip6tables -t nat -A POSTROUTING -o eth0 -s $IPv6NET/64 -j MASQUERADE >> $LOG 2>&1
-sudo iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 81 -i eth0 >> $LOG 2>&1
-sudo ip6tables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 81 -i eth0 >> $LOG 2>&1
+sudo iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 81 -i ens3 >> $LOG 2>&1
+sudo ip6tables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-ports 81 -i ens3 >> $LOG 2>&1
 
 echo "* Preconfigure packages..." | tee -a $LOG
 sudo debconf-set-selections debconf/wireshark >> $LOG 2>&1
@@ -65,8 +65,9 @@ sudo usermod -a -G www-data $LOCALUSER >> $LOG 2>&1
 sudo cp $WD/files/ntopng.conf /etc/ntopng.conf >> $LOG 2>&1
 sudo sed -i "s/^-m=#IPv4NET#/-m=$IPv4NET/" /etc/ntopng.conf >> $LOG 2>&1
 sudo sed -i "s/^-i=#INTERFACE#/-i=$INTERFACE/" /etc/ntopng.conf
-#sudo sed -i "s/^  address #IPv4HOST#/  address $IPv4HOST/" /etc/network/interfaces >> $LOG 2>&1
-#sudo sed -i "s/^  address #IPv6HOST#/  address $IPv6HOST/" /etc/network/interfaces >> $LOG 2>&1
+sudo cp $WD/files/netplan-config.yaml /etc/netplan/00-router-spion.yaml
+#sudo sed -i "s/^  address #IPv4HOST#/  address $IPv4HOST/" /etc/netplan/00-router-spion.yaml >> $LOG 2>&1
+#sudo sed -i "s/^  address #IPv6HOST#/  address $IPv6HOST/" /etc/netplan/00-router-spion.yaml >> $LOG 2>&1
 sudo cp $WD/files/ipforward.conf /etc/sysctl.d >> $LOG 2>&1
 sudo cp $WD/files/hostname /etc/ >> $LOG 2>&1
 sudo cp $WD/files/spion-sudo /etc/sudoers.d/ >> $LOG 2>&1
