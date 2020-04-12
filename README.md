@@ -1,25 +1,32 @@
-# c't-Raspion
+# Router Spion (based on c't-Raspion project)
 
-<img src="files/logo.png" alt="c't Raspion Logo" width="100" align="right">Turns a Raspberry Pi into a WLAN router to take a look at network traffic of smart home and IoT devices. All apps are reachable via web browser. Published by [german computer magazine c't](https://ct.de/).
+Turns a virtual Ubuntu 20.04 into a router to take a look at network traffic of smart home and IoT devices. All apps are reachable via web browser.
+
+Idea and project bases on the [c't-Raspion project](https://github.com/ct-Open-Source/ctraspion) published by [german computer magazine c't](https://ct.de/).
 
 Its initial release incorporates [Pi-hole](https://pi-hole.net/), [ntopng](https://www.ntop.org/products/traffic-analysis/ntop/), [Wireshark](https://www.wireshark.org/), [Shell In A Box](https://github.com/shellinabox/shellinabox) and [mitmproxy](https://mitmproxy.org/).
 
 ## Requirements
 
-Use a Raspberry Pi 3 or 4 for decent performance. Wireshark(-gtk) will be displayed by [Broadwayd](https://developer.gnome.org/gtk3/stable/broadwayd.html) within a web browser window.
+Uses an Ubuntu Server 20.04 (Focal). Wireshark(-gtk) will be displayed by [Broadwayd](https://developer.gnome.org/gtk3/stable/broadwayd.html) within a web browser window.
 
-## Download
+I use a direct attached Delock Network adapter to the Ubuntu 20.04: USB3.0 - 4x Gigabit Lan, [Datasheet](https://cdn.competec.ch/documents/9/5/956646/EN_Datasheet_datenblatt_62966.pdf).
 
-Install as user pi on a fresh Rasbian Buster image (lite prefered) via:
+## Installation
+
+Install a freshly Ubuntu 20.04:
+- Activate OpenSSH Server
+- Create an inital user 'localadmin'
+
+
+Install as user localadmin via:
 
 ```
-wget ct.de/s/x5Pm -O raspion.zip 
-unzip raspion.zip
-cd raspion
-./install2.sh
+wget -O ctraspion https://github.com/prunux/ctraspion/archive/master.zip
+unzip ctraspion.zip
+cd ctraspion
+./install.sh
 ```
-
-[Manual download of the zip archive](https://ct.de/projekte/ctraspion/raspion.zip)
 
 ## Further reading
 
