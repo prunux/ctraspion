@@ -4,7 +4,7 @@ include('functions.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('commands.php');
 } else {
-    exec('ip -o -4 a | awk \'$2 == "eth0" { gsub(/\/.*/, "", $4); print $4 }\'', $localip);
+    exec('ip -o -4 a | awk \'$2 == "ens3" { gsub(/\/.*/, "", $4); print $4 }\'', $localip);
     ?>
     <!DOCTYPE html>
     <html lang="de">
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card-body">
                     <p class="card-text"><small class="text-muted"> %s</small></p>
                 </div>
-                <div class="card-footer"> 
+                <div class="card-footer">
                     <a href="%s" target="_blank" class="btn btn-secondary">Öffnen</a>
                 </div>
                 </div>
@@ -119,8 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="card-text"><small class="text-muted">%s</small></p>
                                 %s
                             </div>
-                            <div class="card-footer"> 
-                            %s 
+                            <div class="card-footer">
+                            %s
                             </div>
                         </div>';
 

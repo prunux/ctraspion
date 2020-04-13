@@ -58,7 +58,7 @@ gui.fileopen.style: SPECIFIED
 
 # Directory to start in when opening File Open dialog.
 # A path to a directory
-gui.fileopen.dir: /home/localadmin/public_html/caps/
+gui.fileopen.dir: /home/#LOCALUSER#/public_html/caps/
 
 # The preview timeout in the File Open dialog
 # A decimal number
@@ -104,7 +104,7 @@ gui.fileopen.dir: /home/localadmin/public_html/caps/
 
 # The path to the webbrowser (Ex: mozilla)
 # A string
-#gui.webbrowser: 
+#gui.webbrowser:
 
 # Check for updates (Windows only)
 # TRUE or FALSE (case-insensitive)
@@ -123,13 +123,13 @@ gui.fileopen.dir: /home/localadmin/public_html/caps/
 # %P = profile name
 # %V = version info
 # A string
-#gui.window_title: 
+#gui.window_title:
 
 # Custom window title to be prepended to the existing title
 # %P = profile name
 # %V = version info
 # A string
-#gui.prepend_window_title: 
+#gui.prepend_window_title:
 
 # Custom start page title
 # A string
@@ -167,7 +167,7 @@ gui.fileopen.dir: /home/localadmin/public_html/caps/
 
 # Hide the given interface types in the startup list
 # A string
-#gui.interfaces_hidden_types: 
+#gui.interfaces_hidden_types:
 
 ####### User Interface: Colors ########
 
@@ -219,11 +219,11 @@ gui.fileopen.dir: /home/localadmin/public_html/caps/
 
 # Packet list hidden columns
 # List all columns to hide in the packet list.
-#gui.column.hidden: 
+#gui.column.hidden:
 
 # Packet list column format
 # Each pair of strings consists of a column title and its format
-#gui.column.format: 
+#gui.column.format:
 #	"No.", "%m",
 #	"Time", "%t",
 #	"Source", "%s",
@@ -240,7 +240,7 @@ gui.fileopen.dir: /home/localadmin/public_html/caps/
 
 # Font name for packet list, protocol tree, and hex dump panes. (Qt)
 # A string
-#gui.qt.font_name: 
+#gui.qt.font_name:
 
 ####### User Interface: Layout ########
 
@@ -291,31 +291,31 @@ capture.device: #INTERFACE#
 
 # Interface link-layer header types (Ex: en0(1),en1(143),...)
 # A string
-#capture.devices_linktypes: 
+#capture.devices_linktypes:
 
 # Interface descriptions (Ex: eth0(eth0 descr),eth1(eth1 descr),...)
 # A string
-#capture.devices_descr: 
+#capture.devices_descr:
 
 # Hide interface? (Ex: eth0,eth3,...)
 # A string
-#capture.devices_hide: 
+#capture.devices_hide:
 
 # By default, capture in monitor mode on interface? (Ex: eth0,eth3,...)
 # A string
-#capture.devices_monitor_mode: 
+#capture.devices_monitor_mode:
 
 # Interface buffer size (Ex: en0(1),en1(143),...)
 # A string
-#capture.devices_buffersize: 
+#capture.devices_buffersize:
 
 # Interface snap length (Ex: en0(65535),en1(1430),...)
 # A string
-#capture.devices_snaplen: 
+#capture.devices_snaplen:
 
 # Interface promiscuous mode (Ex: en0(0),en1(1),...)
 # A string
-#capture.devices_pmode: 
+#capture.devices_pmode:
 
 # Capture in promiscuous mode?
 # TRUE or FALSE (case-insensitive)
@@ -323,7 +323,7 @@ capture.device: #INTERFACE#
 
 # Interface capture filter (Ex: en0(tcp),en1(udp),...)
 # A string
-#capture.devices_filter: 
+#capture.devices_filter:
 
 # Capture in pcapng format?
 # TRUE or FALSE (case-insensitive)
@@ -348,8 +348,8 @@ capture.device: #INTERFACE#
 # Column list
 # List of columns to be displayed in the capture options dialog.
 # Possible values: INTERFACE, LINK, PMODE, SNAPLEN, MONITOR, BUFFER, FILTER
-# 
-#capture.columns: 
+#
+#capture.columns:
 #	"INTERFACE", "LINK",
 #	"PMODE", "SNAPLEN",
 #	"MONITOR", "BUFFER",
@@ -380,7 +380,7 @@ capture.device: #INTERFACE#
 
 # Remote SSH server address
 # A string
-#extcap.sshdump.remotehost: 
+#extcap.sshdump.remotehost:
 
 # Remote SSH server port
 # A string
@@ -392,7 +392,7 @@ capture.device: #INTERFACE#
 
 # Path to SSH private key
 # A string
-#extcap.sshdump.sshkey: 
+#extcap.sshdump.sshkey:
 
 # Remote interface
 # A string
@@ -400,15 +400,15 @@ capture.device: #INTERFACE#
 
 # Remote capture command
 # A string
-#extcap.sshdump.remotecapturecommand: 
+#extcap.sshdump.remotecapturecommand:
 
 # Use sudo on the remote machine
 # A string
-#extcap.sshdump.remotesudo: 
+#extcap.sshdump.remotesudo:
 
 # No promiscuous mode
 # A string
-#extcap.sshdump.remotenoprom: 
+#extcap.sshdump.remotenoprom:
 
 # Remote capture filter
 # A string
@@ -424,7 +424,7 @@ capture.device: #INTERFACE#
 
 # Use a file for debug
 # A string
-#extcap.sshdump.debugfile: 
+#extcap.sshdump.debugfile:
 
 # Max bytes in a packet
 # A string
@@ -444,7 +444,7 @@ capture.device: #INTERFACE#
 
 # Type of packet
 # A string
-#extcap.randpkt.type: 
+#extcap.randpkt.type:
 
 # Run in debug mode
 # A string
@@ -452,11 +452,11 @@ capture.device: #INTERFACE#
 
 # Use a file for debug
 # A string
-#extcap.randpkt.debugfile: 
+#extcap.randpkt.debugfile:
 
 # Remote SSH server address
 # A string
-#extcap.ciscodump.remotehost: 
+#extcap.ciscodump.remotehost:
 
 # Remote SSH server port
 # A string
@@ -468,11 +468,11 @@ capture.device: #INTERFACE#
 
 # Path to SSH private key
 # A string
-#extcap.ciscodump.sshkey: 
+#extcap.ciscodump.sshkey:
 
 # Remote interface
 # A string
-#extcap.ciscodump.remoteinterface: 
+#extcap.ciscodump.remoteinterface:
 
 # Remote capture filter
 # A string
@@ -480,7 +480,7 @@ capture.device: #INTERFACE#
 
 # Packets to capture
 # A string
-#extcap.ciscodump.remotecount: 
+#extcap.ciscodump.remotecount:
 
 # Run in debug mode
 # A string
@@ -488,7 +488,7 @@ capture.device: #INTERFACE#
 
 # Use a file for debug
 # A string
-#extcap.ciscodump.debugfile: 
+#extcap.ciscodump.debugfile:
 
 # Listen port
 # A string
@@ -504,7 +504,7 @@ capture.device: #INTERFACE#
 
 # Use a file for debug
 # A string
-#extcap.udpdump.debugfile: 
+#extcap.udpdump.debugfile:
 
 ####### Name Resolution ########
 
@@ -780,67 +780,67 @@ capture.device: #INTERFACE#
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context0: 
+#6lowpan.context0:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context1: 
+#6lowpan.context1:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context2: 
+#6lowpan.context2:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context3: 
+#6lowpan.context3:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context4: 
+#6lowpan.context4:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context5: 
+#6lowpan.context5:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context6: 
+#6lowpan.context6:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context7: 
+#6lowpan.context7:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context8: 
+#6lowpan.context8:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context9: 
+#6lowpan.context9:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context10: 
+#6lowpan.context10:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context11: 
+#6lowpan.context11:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context12: 
+#6lowpan.context12:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context13: 
+#6lowpan.context13:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context14: 
+#6lowpan.context14:
 
 # IPv6 prefix to use for stateful address decompression.
 # A string
-#6lowpan.context15: 
+#6lowpan.context15:
 
 # Some generators incorrectly indicate long preamble when the preamble was actuallyshort. Always assume short preamble when calculating duration.
 # TRUE or FALSE (case-insensitive)
@@ -874,7 +874,7 @@ capture.device: #INTERFACE#
 # Display format
 # One of: Hex    , Decimal, Percent
 # (case-insensitive).
-#acn.dmx_display_view: Hex    
+#acn.dmx_display_view: Hex
 
 # Display zeros instead of dots
 # TRUE or FALSE (case-insensitive)
@@ -945,11 +945,11 @@ capture.device: #INTERFACE#
 
 # The dynamic payload types which will be interpreted as AMR(default 0)
 # A string denoting an positive integer range (e.g., "1-20,30-40")
-#amr.dynamic.payload.type: 
+#amr.dynamic.payload.type:
 
 # The dynamic payload types which will be interpreted as AMR-WB(default 0)
 # A string denoting an positive integer range (e.g., "1-20,30-40")
-#amr.wb.dynamic.payload.type: 
+#amr.wb.dynamic.payload.type:
 
 # Type of AMR encoding of the payload
 # One of: RFC 3267 octet aligned, RFC 3267 BW-efficient, AMR IF1, AMR IF2
@@ -1150,7 +1150,7 @@ capture.device: #INTERFACE#
 # TRUE or FALSE (case-insensitive)
 #bittorrent.decode_client: FALSE
 
-# Force decoding stream as A2DP with Content Protection SCMS-T 
+# Force decoding stream as A2DP with Content Protection SCMS-T
 # TRUE or FALSE (case-insensitive)
 #bta2dp.a2dp.content_protection.scms_t: FALSE
 
@@ -1207,7 +1207,7 @@ capture.device: #INTERFACE#
 # (case-insensitive).
 #btsap.sap.top_dissect: Put higher dissectors under this one
 
-# Force decoding stream as VDP with Content Protection SCMS-T 
+# Force decoding stream as VDP with Content Protection SCMS-T
 # TRUE or FALSE (case-insensitive)
 #btvdp.vdp.content_protection.scms_t: FALSE
 
@@ -1274,7 +1274,7 @@ capture.device: #INTERFACE#
 
 # Base object identifier for use in resolving relative object identifiers
 # A string
-#c1222.baseoid: 
+#c1222.baseoid:
 
 # Whether the C12.22 dissector should verify the crypto for all relevant messages
 # TRUE or FALSE (case-insensitive)
@@ -1359,11 +1359,11 @@ capture.device: #INTERFACE#
 
 # IPv4 address or hostname of the host
 # A string
-#cigi.host: 
+#cigi.host:
 
 # IPv4 address or hostname of the image generator
 # A string
-#cigi.ig: 
+#cigi.ig:
 
 # Whether the CIP dissector should display enhanced/verbose data in the Info column for CIP explicit messages
 # TRUE or FALSE (case-insensitive)
@@ -1407,7 +1407,7 @@ capture.device: #INTERFACE#
 
 # Semicolon-separated  list of keys for decryption(e.g. key1;key2;...
 # A string
-#corosync_totemnet.private_keys: 
+#corosync_totemnet.private_keys:
 
 # Whether segmented COTP datagrams should be reassembled. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -1542,7 +1542,7 @@ capture.device: #INTERFACE#
 # TRUE or FALSE (case-insensitive)
 #dicom.seq_tree: TRUE
 
-# Create a node for a tag and show tag details as single elements. This can be useful to debug a tag and to allow display filters on these attributes. When using TShark to create a text output, it's better to have it disabled. 
+# Create a node for a tag and show tag details as single elements. This can be useful to debug a tag and to allow display filters on these attributes. When using TShark to create a text output, it's better to have it disabled.
 # TRUE or FALSE (case-insensitive)
 #dicom.tag_tree: FALSE
 
@@ -1636,44 +1636,44 @@ capture.device: #INTERFACE#
 #dsi.desegment: TRUE
 
 # redirect dtls debug to file name; leave empty to disable debug, use "-" to redirect output to stderr
-# 
+#
 # A path to a file
-#dtls.debug_file: 
+#dtls.debug_file:
 
 # Semicolon-separated list of private RSA keys used for DTLS decryption. Used by versions of Wireshark prior to 1.6
 # A string
-#dtls.keys_list: 
+#dtls.keys_list:
 
 # Pre-Shared-Key as HEX string. Should be 0 to 16 bytes.
 # A string
-#dtls.psk: 
+#dtls.psk:
 
-# The name of a file which contains a list of 
+# The name of a file which contains a list of
 # (pre-)master secrets in one of the following formats:
-# 
+#
 # RSA <EPMS> <PMS>
 # RSA Session-ID:<SSLID> Master-Key:<MS>
 # CLIENT_RANDOM <CRAND> <MS>
 # PMS_CLIENT_RANDOM <CRAND> <PMS>
-# 
+#
 # Where:
 # <EPMS> = First 8 bytes of the Encrypted PMS
 # <PMS> = The Pre-Master-Secret (PMS) used to derive the MS
 # <SSLID> = The SSL Session ID
 # <MS> = The Master-Secret (MS)
 # <CRAND> = The Client's random number from the ClientHello message
-# 
+#
 # (All fields are in hex notation)
 # A path to a file
-#dtls.keylog_file: 
+#dtls.keylog_file:
 
 # SAC Encryption Key (16 hex bytes)
 # A string
-#dvb-ci.sek: 
+#dvb-ci.sek:
 
 # SAC Init Vector (16 hex bytes)
 # A string
-#dvb-ci.siv: 
+#dvb-ci.siv:
 
 # Dissect the content of messages transmitted on the Low-Speed Communication resource. This requires a dissector for the protocol and target port contained in the connection descriptor.
 # TRUE or FALSE (case-insensitive)
@@ -1734,7 +1734,7 @@ capture.device: #INTERFACE#
 # TRUE or FALSE (case-insensitive)
 #epl.use_sdo_mappings: TRUE
 
-# If you want to parse the defaultValue (XDD) and actualValue (XDC) attributes for ObjectMappings in order to detect default PDO mappings, which may not be sent over SDO 
+# If you want to parse the defaultValue (XDD) and actualValue (XDC) attributes for ObjectMappings in order to detect default PDO mappings, which may not be sent over SDO
 # TRUE or FALSE (case-insensitive)
 #epl.use_xdc_mappings: TRUE
 
@@ -1744,7 +1744,7 @@ capture.device: #INTERFACE#
 
 # If you have a capture without IdentResponse and many nodes, it's easier to set a default profile here than to add entries for all MAC address or Node IDs
 # A path to a file
-#epl.default_profile: 
+#epl.default_profile:
 
 # Protocol encapsulated in HDLC records
 # One of: Cisco HDLC, PPP serial, Frame Relay, SS7 MTP2, Attempt to guess
@@ -1786,7 +1786,7 @@ capture.device: #INTERFACE#
 
 # Place the hash/symbol files (generated by the Apache Etch compiler) ending with .ewh here
 # A path to a directory
-#etch.file: 
+#etch.file:
 
 # Some devices add trailing data to frames. When this setting is checked the Ethernet dissector will assume there has been added padding to the frame before the trailer was added. Uncheck if a device added a trailer before the frame was padded.
 # TRUE or FALSE (case-insensitive)
@@ -1855,11 +1855,11 @@ capture.device: #INTERFACE#
 
 # A string specifying the characters to use to represent "in" and "out" in the brief summary.  The default is "><" ('>' for in and '<' for out).  If this is not set or is less than two characters, the default is used.  If it is longer than two characters, the extra characters are ignored.
 # A string
-#f5ethtrailer.brief_inout_chars: 
+#f5ethtrailer.brief_inout_chars:
 
 # If the platform in the F5 FILEINFO packet matches the provided regex, slot information will be displayed in the info column; otherwise, it will not.  A reasonable value is "^(A.*|Z101)$".  If the regex is empty or there is no platform information in the capture, slot information is always displayed.
 # A string
-#f5ethtrailer.slots_regex: 
+#f5ethtrailer.slots_regex:
 
 # If present, include the RST cause text from the trailer in the "info" column of the packet list pane.
 # TRUE or FALSE (case-insensitive)
@@ -2172,7 +2172,7 @@ capture.device: #INTERFACE#
 
 # Dynamic payload types which will be interpreted as H264; Values must be in the range 96 - 127
 # A string denoting an positive integer range (e.g., "1-20,30-40")
-#h264.dynamic.payload.type: 
+#h264.dynamic.payload.type:
 
 # Whether the HART-IP dissector should desegment all messages spanning multiple TCP segments
 # TRUE or FALSE (case-insensitive)
@@ -2568,7 +2568,7 @@ capture.device: #INTERFACE#
 
 # File containing a translation from object ID to string
 # A path to a file
-#isobus.vt.object_ids: 
+#isobus.vt.object_ids:
 
 # Note national variants may not be fully supported
 # One of: ITU Standard, French National Standard, Israeli National Standard, Russian National Standard, Japan National Standard, Japan National Standard (TTC)
@@ -2649,7 +2649,7 @@ capture.device: #INTERFACE#
 
 # The keytab file containing all the secrets
 # A path to a file
-#kerberos.file: 
+#kerberos.file:
 
 # KT allows binary values in keys and values. Attempt to show an ASCII representation anyway (which might be prematurely terminated by a NULL!
 # TRUE or FALSE (case-insensitive)
@@ -2671,7 +2671,7 @@ capture.device: #INTERFACE#
 
 # Shared secret used for control message digest authentication
 # A string
-#l2tp.shared_secret: 
+#l2tp.shared_secret:
 
 # Use SAPI values as specified in TS 48 056
 # TRUE or FALSE (case-insensitive)
@@ -2736,7 +2736,7 @@ capture.device: #INTERFACE#
 
 # 128-bit decryption key in hexadecimal format
 # A string
-#lwm.lwmes_key: 
+#lwm.lwmes_key:
 
 # Version used by Wireshark
 # One of: Internet Draft version 2, Internet Draft version 8, RFC 4165
@@ -2822,7 +2822,7 @@ capture.device: #INTERFACE#
 
 # The name of the file containing the mate module's configuration
 # A path to a file
-#mate.config: 
+#mate.config:
 
 # Decode control data received on "usb.control" with an unknown interface class as MBIM
 # TRUE or FALSE (case-insensitive)
@@ -2904,7 +2904,7 @@ capture.device: #INTERFACE#
 # Register Format
 # One of: UINT16     , INT16      , UINT32     , INT32      , IEEE FLT   , MODICON FLT
 # (case-insensitive).
-#modbus.mbus_register_format: UINT16     
+#modbus.mbus_register_format: UINT16
 
 # Whether the Modbus RTU dissector should desegment all messages spanning multiple TCP segments
 # TRUE or FALSE (case-insensitive)
@@ -2935,30 +2935,30 @@ capture.device: #INTERFACE#
 #mpls.flowlabel_in_mpls_header: FALSE
 
 # Enable to allow non-zero Length in Control Word. This may be needed to correctly decode traffic from some legacy devices which generate non-zero Length even if there is no padding in the packet. Note that Length should have proper value (dissector checks this anyway).
-# 
+#
 # Disable to blame all packets with CW.Length <> 0. This conforms to RFC4717.
 # TRUE or FALSE (case-insensitive)
 #mplspwatmaal5sdu.allow_cw_length_nonzero_aal5: FALSE
 
 # Enable to use reserved bits (8..9) of Control Word as an extension of CW.Length. This may be needed to correctly decode traffic from some legacy devices which uses reserved bits as extension of Length
-# 
+#
 # Disable to blame all packets with CW.Reserved <> 0. This conforms to RFC4717.
 # TRUE or FALSE (case-insensitive)
 #mplspwatmaal5sdu.extend_cw_length_with_rsvd_aal5: FALSE
 
 # Enable to allow non-zero Length in Control Word. This may be needed to correctly decode traffic from some legacy devices which generate non-zero Length even if there is no padding in the packet. Note that Length should have proper value (dissector checks this anyway).
-# 
+#
 # Disable to blame all packets with CW.Length <> 0. This conforms to RFC4717.
 # TRUE or FALSE (case-insensitive)
 #mplspwatmn1cw.allow_cw_length_nonzero: FALSE
 
 # Enable to use reserved bits (8..9) of Control Word as an extension of CW.Length. This may be needed to correctly decode traffic from some legacy devices which uses reserved bits as extension of Length
-# 
+#
 # Disable to blame all packets with CW.Reserved <> 0. This conforms to RFC4717.
 # TRUE or FALSE (case-insensitive)
 #mplspwatmn1cw.extend_cw_length_with_rsvd: FALSE
 
-# To use this option you must also enable "Analyze TCP sequence numbers". 
+# To use this option you must also enable "Analyze TCP sequence numbers".
 # TRUE or FALSE (case-insensitive)
 #mptcp.analyze_mptcp: TRUE
 
@@ -3253,7 +3253,7 @@ capture.device: #INTERFACE#
 
 # NT Password (used to decrypt payloads)
 # A string
-#ntlmssp.nt_password: 
+#ntlmssp.nt_password:
 
 # Range of NVMe Subsystem ports(default 4420)
 # A string denoting an positive integer range (e.g., "1-20,30-40")
@@ -3289,7 +3289,7 @@ capture.device: #INTERFACE#
 
 # A comma-separated list of nodes to be filtered during dissection
 # A string
-#opensafety.filter_nodes: 
+#opensafety.filter_nodes:
 
 # If set to true, only nodes in the list will be shown, otherwise they will be hidden
 # TRUE or FALSE (case-insensitive)
@@ -3410,7 +3410,7 @@ capture.device: #INTERFACE#
 
 # SCCP (and SUA) SSNs to decode as PCAP
 # A string denoting an positive integer range (e.g., "1-20,30-40")
-#pcap.ssn: 
+#pcap.ssn:
 
 # Whether the PCLI summary line should be shown in the protocol tree
 # TRUE or FALSE (case-insensitive)
@@ -3482,7 +3482,7 @@ capture.device: #INTERFACE#
 
 # The password to used to decrypt the encrypted elements within the PKCS#12 file
 # A string
-#pkcs12.password: 
+#pkcs12.password:
 
 # Whether to try and decrypt the encrypted data within the PKCS#12 with a NULL password
 # TRUE or FALSE (case-insensitive)
@@ -3507,7 +3507,7 @@ capture.device: #INTERFACE#
 
 # Select your Networkpath to your GSD-Files.
 # A path to a directory
-#pn_io.pnio_ps_networkpath: 
+#pn_io.pnio_ps_networkpath:
 
 # Whether the POP dissector should reassemble RETR and TOP responses and spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -3590,7 +3590,7 @@ capture.device: #INTERFACE#
 
 # Shared secret used to decode User Passwords and validate Response Authenticators
 # A string
-#radius.shared_secret: 
+#radius.shared_secret:
 
 # Whether to check or not if Response Authenticator is correct. You need to define shared secret for this to work.
 # TRUE or FALSE (case-insensitive)
@@ -3905,7 +3905,7 @@ capture.device: #INTERFACE#
 
 # The protocol which should be used to dissect the payload if nothing else has claimed it
 # A string
-#sccp.default_payload: 
+#sccp.default_payload:
 
 # When Target Cannot Be Identified, Decode SCSI Messages As
 # One of: Block Device, Sequential Device, Object Based Storage Device, Medium Changer Device, Multimedia Device
@@ -3968,7 +3968,7 @@ capture.device: #INTERFACE#
 
 # List of word bits contained in SER equations (Comma-separated, no Quotes or Checksums)
 # A string
-#selfm.ser_list: 
+#selfm.ser_list:
 
 # Whether the session dissector should reassemble messages spanning multiple SES segments
 # TRUE or FALSE (case-insensitive)
@@ -4158,7 +4158,7 @@ capture.device: #INTERFACE#
 
 # Inverter system encryption key
 # A string
-#solaredge.system_encryption_key: 
+#solaredge.system_encryption_key:
 
 # Whether the SoulSeek dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -4207,17 +4207,17 @@ capture.device: #INTERFACE#
 
 # Redirect SSL debug to the file specified. Leave empty to disable debugging or use "-" to redirect output to stderr.
 # A path to a file
-#ssl.debug_file: 
+#ssl.debug_file:
 
 # Semicolon-separated list of private RSA keys used for SSL decryption. Used by versions of Wireshark prior to 1.6
 # A string
-#ssl.keys_list: 
+#ssl.keys_list:
 
 # Whether the SSL dissector should reassemble SSL records spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
 #ssl.desegment_ssl_records: TRUE
 
-# Whether the SSL dissector should reassemble SSL Application Data spanning multiple SSL records. 
+# Whether the SSL dissector should reassemble SSL Application Data spanning multiple SSL records.
 # TRUE or FALSE (case-insensitive)
 #ssl.desegment_ssl_application_data: TRUE
 
@@ -4227,26 +4227,26 @@ capture.device: #INTERFACE#
 
 # Pre-Shared-Key as HEX string. Should be 0 to 16 bytes.
 # A string
-#ssl.psk: 
+#ssl.psk:
 
-# The name of a file which contains a list of 
+# The name of a file which contains a list of
 # (pre-)master secrets in one of the following formats:
-# 
+#
 # RSA <EPMS> <PMS>
 # RSA Session-ID:<SSLID> Master-Key:<MS>
 # CLIENT_RANDOM <CRAND> <MS>
 # PMS_CLIENT_RANDOM <CRAND> <PMS>
-# 
+#
 # Where:
 # <EPMS> = First 8 bytes of the Encrypted PMS
 # <PMS> = The Pre-Master-Secret (PMS) used to derive the MS
 # <SSLID> = The SSL Session ID
 # <MS> = The Master-Secret (MS)
 # <CRAND> = The Client's random number from the ClientHello message
-# 
+#
 # (All fields are in hex notation)
 # A path to a file
-#ssl.keylog_file: 
+#ssl.keylog_file:
 
 # Whether the STANAG 5066 DTS Layer dissector should reassemble DPDUs spanning multiple TCP segments
 # TRUE or FALSE (case-insensitive)
@@ -4320,7 +4320,7 @@ capture.device: #INTERFACE#
 
 # TACACS+ Encryption Key
 # A string
-#tacplus.key: 
+#tacplus.key:
 
 # Whether the TALI dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -4328,7 +4328,7 @@ capture.device: #INTERFACE#
 
 # SCCP (and SUA) SSNs to decode as TCAP
 # A string denoting an positive integer range (e.g., "1-20,30-40")
-#tcap.ssn: 
+#tcap.ssn:
 
 # Activate the analyse for Response Time
 # TRUE or FALSE (case-insensitive)
@@ -4362,7 +4362,7 @@ capture.device: #INTERFACE#
 # TRUE or FALSE (case-insensitive)
 #tcp.analyze_sequence_numbers: TRUE
 
-# Make the TCP dissector use relative sequence numbers instead of absolute ones. To use this option you must also enable "Analyze TCP sequence numbers". 
+# Make the TCP dissector use relative sequence numbers instead of absolute ones. To use this option you must also enable "Analyze TCP sequence numbers".
 # TRUE or FALSE (case-insensitive)
 #tcp.relative_sequence_numbers: TRUE
 
@@ -4443,7 +4443,7 @@ capture.device: #INTERFACE#
 
 # 32-bit sequence counter for hash
 # A string
-#thread.thr_seq_ctr: 
+#thread.thr_seq_ctr:
 
 # Set if the PAN ID should be used as the first two octets of the master key (PAN ID LSB), (PAN ID MSB), Key[2]...
 # TRUE or FALSE (case-insensitive)
@@ -4597,11 +4597,11 @@ capture.device: #INTERFACE#
 
 # IPv4 address of the proxy (Invalid values will be ignored)
 # A string
-#uasip.proxy_ipaddr: 
+#uasip.proxy_ipaddr:
 
 # IPv4 address of the DHS3 system. (Used only in case of identical source and destination ports)
 # A string
-#uaudp.system_ip: 
+#uaudp.system_ip:
 
 # Whether the UCP dissector should reassemble messages spanning multiple TCP segments. To use this option, you must also enable "Allow subdissectors to reassemble TCP streams" in the TCP protocol settings.
 # TRUE or FALSE (case-insensitive)
@@ -4671,7 +4671,7 @@ capture.device: #INTERFACE#
 
 # Dynamic payload types which will be interpreted as vp8; Values must be in the range 96 - 127
 # A string denoting an positive integer range (e.g., "1-20,30-40")
-#vp8.dynamic.payload.type: 
+#vp8.dynamic.payload.type:
 
 # There is some ambiguity on how to calculate V3 checksumsAs in V3 will use a pseudo header(which may only be implemented for IPv6 by some manufacturers)
 # TRUE or FALSE (case-insensitive)

@@ -5,9 +5,9 @@ Requires=broadwayd.service
 
 [Service]
 Type=simple
-User=pi
-ExecStart=/usr/bin/wireshark-gtk -i br0 --fullscreen -o gui.fileopen_remembered_dir:/home/pi/public_html/caps
-Environment=XDG_RUNTIME_DIR=/home/pi/.cache
+User=localadmin
+ExecStart=/usr/bin/wireshark-gtk -i #INTERFACE# --fullscreen -o gui.fileopen_remembered_dir:/home/#LOCALUSER#/public_html/caps
+Environment=XDG_RUNTIME_DIR=/home/#LOCALUSER#/.cache
 Environment=GDK_BACKEND=broadway
 Restart=always
 RestartSec=5

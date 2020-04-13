@@ -77,7 +77,10 @@ sudo mkdir -p /root/.mitmproxy >> $LOG 2>&1
 sudo cp $WD/files/mitmproxy-config.yaml /root/.mitmproxy >> $LOG 2>&1
 mkdir -p /home/$LOCALUSER/.config/wireshark >> $LOG 2>&1
 cp $WD/files/wireshark_config /home/$LOCALUSER/.config/wireshark >> $LOG 2>&1
+sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /home/$LOCALUSER/.config/wireshark >> $LOG 2>&1
 cp $WD/files/wireshark_preferences /home/$LOCALUSER/.config/wireshark/preferences >> $LOG 2>&1
+sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /home/$LOCALUSER/.config/wireshark/preferences >> $LOG 2>&1
+sudo sed -i "s/#INTERFACE#/$INTERFACE/" /home/$LOCALUSER/.config/wireshark/preferences >> $LOG 2>&1
 sudo cp $WD/files/gtk-settings.ini /etc/gtk-3.0 >> $LOG 2>&1
 sudo cp -f $WD/files/shellinabox /etc/default >> $LOG 2>&1
 cd /usr/lib/python3/dist-packages/mitmproxy/addons/onboardingapp/static >> $LOG 2>&1
@@ -87,6 +90,8 @@ echo "* Prepare systemd units ..." | tee -a $LOG
 sudo cp $WD/files/mitmweb.service /etc/systemd/system >> $LOG 2>&1
 sudo cp $WD/files/broadwayd.service /etc/systemd/system >> $LOG 2>&1
 sudo cp $WD/files/wireshark.service /etc/systemd/system >> $LOG 2>&1
+sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /etc/systemd/sytem/wireshark.service >> $LOG 2>&1
+sudo sed -i "s/#INTERFACE#/$INTERFACE/" /etc/systemd/sytem/wireshark.service >> $LOG 2>&1
 sudo systemctl enable mitmweb >> $LOG 2>&1
 sudo systemctl unmask hostapd >> $LOG 2>&1
 sudo systemctl enable radvd >> $LOG 2>&1
