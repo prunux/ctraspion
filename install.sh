@@ -76,8 +76,8 @@ sudo sed -i "s/^  RDNSS #IPv6HOST#/  RDNSS $IPv6HOST/" /etc/radvd.conf >> $LOG 2
 sudo mkdir -p /root/.mitmproxy >> $LOG 2>&1
 sudo cp $WD/files/mitmproxy-config.yaml /root/.mitmproxy >> $LOG 2>&1
 mkdir -p /home/$LOCALUSER/.config/wireshark >> $LOG 2>&1
-cp $WD/files/wireshark_config /home/$LOCALUSER/.config/wireshark >> $LOG 2>&1
-sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /home/$LOCALUSER/.config/wireshark >> $LOG 2>&1
+cp $WD/files/wireshark_recent /home/$LOCALUSER/.config/wireshark/recent >> $LOG 2>&1
+sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /home/$LOCALUSER/.config/wireshark/recent >> $LOG 2>&1
 cp $WD/files/wireshark_preferences /home/$LOCALUSER/.config/wireshark/preferences >> $LOG 2>&1
 sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /home/$LOCALUSER/.config/wireshark/preferences >> $LOG 2>&1
 sudo sed -i "s/#INTERFACE#/$INTERFACE/" /home/$LOCALUSER/.config/wireshark/preferences >> $LOG 2>&1
