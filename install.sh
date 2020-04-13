@@ -75,6 +75,7 @@ sudo cp $WD/files/radvd.conf /etc/ >> $LOG 2>&1
 sudo sed -i "s/^  RDNSS #IPv6HOST#/  RDNSS $IPv6HOST/" /etc/radvd.conf >> $LOG 2>&1
 sudo mkdir -p /root/.mitmproxy >> $LOG 2>&1
 sudo cp $WD/files/mitmproxy-config.yaml /root/.mitmproxy >> $LOG 2>&1
+
 mkdir -p /home/$LOCALUSER/.config/wireshark >> $LOG 2>&1
 cp $WD/files/wireshark_recent /home/$LOCALUSER/.config/wireshark/recent >> $LOG 2>&1
 sudo sed -i "s/#LOCALUSER#/$LOCALUSER/" /home/$LOCALUSER/.config/wireshark/recent >> $LOG 2>&1
@@ -85,6 +86,11 @@ sudo cp $WD/files/gtk-settings.ini /etc/gtk-3.0 >> $LOG 2>&1
 sudo cp -f $WD/files/shellinabox /etc/default >> $LOG 2>&1
 cd /usr/lib/python3/dist-packages/mitmproxy/addons/onboardingapp/static >> $LOG 2>&1
 sudo ln -sf /usr/share/fonts-font-awesome fontawesome >> $LOG 2>&1
+
+sudo cp $WD/sbin/* /usr/local/sbin >> $LOG 2>&1
+sudo chmod +x /usr/local/sbin/*.sh >> $LOG 2>&1
+sudo cp $WD/files/prefix_delegation /etc/dhcp/dhclient-exit-hooks.d >> $LOG 2>&1
+sudo chmod +x /etc/dhcp/dhclient-exit-hooks.d/prefix_delegation >> $LOG 2>&1
 
 echo "* Prepare systemd units ..." | tee -a $LOG
 sudo cp $WD/files/mitmweb.service /etc/systemd/system >> $LOG 2>&1
